@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Export notebooks
+        run: |
+          mkdir -p _site
+          # Landing page (if present)
+          if [ -d site ]; then cp -r site/. _site/; fi
+          # Every notebook in notebooks/ is published as a WebAssembly app.
+          # Work in progress and anything that can't run in the browser
+          # (e.g. YOLO: PyTorch, webcam) lives in drafts/ and is not published.
+          for f in notebooks/*.py; do
+            name=$(basename "$f" .py)
+            uvx marimo@0.25.2 export html-wasm "$f" -o "_site/$name" --mode run
+          done
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
