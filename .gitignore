@@ -1,0 +1,24 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Claude reports
+notebook-reports
+# Model weights (too large for GitHub)
+*.pt
+
+# Generated media
+assets/videos/street-view-tracked.mp4
+
+# marimo session cache
+__marimo__/
+
+# macOS
+.DS_Store

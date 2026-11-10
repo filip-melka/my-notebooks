@@ -1,0 +1,15 @@
+[project]
+name = "my-notebooks"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipython>=9.18.1",
+    "marimo>=0.25.2",
+    "ultralytics>=8.4.202",
+    "wigglystuff>=0.5.36",
+]
+
+[tool.marimo.display]
+custom_css = ["theme.css"]
