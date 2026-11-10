@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Minimal marimo theme — matches the blog: off-white page, near-black text,
+   system sans-serif, grey metadata, hairline borders, no decoration.
+
+   Applied to every notebook in this project via pyproject.toml:
+       [tool.marimo.display]
+       custom_css = ["theme.css"]
+   or per notebook:  app = marimo.App(css_file="theme.css")
+   ========================================================================== */
+
+/* --- Tokens -------------------------------------------------------------- */
+/* marimo defines its colour tokens on every element (:is(.marimo,:root) *),
+   so the overrides use selectors of the same specificity and win by order. */
+:root,
+.marimo,
+:is(.marimo, :root) * {
+  --page: #fafafa;
+  --surface: #ffffff;
+  --text: #111111;
+  --text-soft: #666666;
+  --hairline: #e6e6e6;
+  --hairline-strong: #d4d4d4;
+  --code-bg: #f0f0f0;
+
+  --background: var(--page);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --muted: var(--code-bg);
+  --muted-foreground: var(--text-soft);
+  --border: var(--hairline);
+  --input: var(--hairline-strong);
+  --primary: var(--text);
+  --primary-foreground: var(--page);
+  --accent: var(--code-bg);
+  --accent-foreground: var(--text);
+  --ring: var(--text-soft);
+  --radius: 6px;
+
+  --marimo-heading-font: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --marimo-text-font: var(--marimo-heading-font);
+  --marimo-monospace-font: ui-monospace, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+.dark,
+.dark-theme,
+.dark *,
+.dark-theme * {
+  --page: #111111;
+  --surface: #171717;
+  --text: #ededed;
+  --text-soft: #a1a1a1;
+  --hairline: #262626;
+  --hairline-strong: #3a3a3a;
+  --code-bg: #1f1f1f;
+}
+
+/* --- Page ---------------------------------------------------------------- */
+body,
+#App {
+  background-color: var(--page);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Cells: flat, hairline only ------------------------------------------ */
+.marimo-cell {
+  border-color: var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: none;
+}
+
+.marimo-cell:hover,
+.marimo-cell:focus-within {
+  border-color: var(--hairline-strong);
+}
+
+/* --- Markdown typography ------------------------------------------------- */
+.markdown {
+  font-family: var(--marimo-text-font);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-family: var(--marimo-heading-font);
+  color: var(--text);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.markdown h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.markdown h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 2.25rem;
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+}
+
+.markdown h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.markdown p,
+.markdown li {
+  color: var(--text);
+}
+
+.markdown small,
+.markdown figcaption {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.markdown strong {
+  font-weight: 600;
+}
+
+.markdown a,
+.markdown a:visited {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--hairline-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.markdown a:hover {
+  text-decoration-color: var(--text);
+}
+
+.markdown :not(pre) > code {
+  font-family: var(--marimo-monospace-font);
+  font-size: 0.875em;
+  background: var(--code-bg);
+  color: var(--text);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+.markdown pre {
+  background: var(--code-bg);
+  border: none;
+  border-radius: var(--radius);
+}
+
+.markdown blockquote {
+  border-left: 2px solid var(--hairline-strong);
+  color: var(--text-soft);
+  font-style: normal;
+  padding-left: 1rem;
+}
+
+.markdown hr {
+  border: none;
+  border-top: 1px solid var(--hairline);
+  margin: 2.5rem 0;
+}
+
+.markdown img {
+  border-radius: var(--radius);
+}
+
+/* tables: light rules, no boxes */
+.markdown table {
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.markdown th {
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+.markdown td {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* admonitions: quiet grey panels. warning / danger keep marimo's colours
+   so they still read as alerts. */
+.markdown .admonition {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: none;
+}
+
+.admonition.note,
+.admonition.info,
+.admonition.tip {
+  --admonition-heading-color: var(--text);
+  background: var(--surface);
+  border-color: var(--hairline);
+}
+
+/* marimo zebra-stripes markdown tables; same selectors so this wins */
+.markdown table tbody tr:nth-child(odd),
+.markdown table tbody tr:nth-child(2n) {
+  background: transparent;
+}
+
+/* --- Quizzes (mo.ui.*.form) ---------------------------------------------
+   UI widgets render inside shadow DOM, but marimo copies this stylesheet
+   into every widget's shadow root, so the selectors below reach them.
+   They target marimo's own markup / data-testids (checked against 0.25). */
+
+/* marimo's "action" buttons are bright yellow; make them ink instead */
+:root,
+.marimo,
+:is(.marimo, :root) * {
+  --action: var(--text);
+  --action-hover: var(--text);
+  --action-border: var(--text);
+  --action-foreground: var(--page);
+}
+
+/* every form is a quiet card: question, inputs, then the button on the left */
+form.contents > div.rounded-lg {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 1.25rem 1.5rem;
+  gap: 1rem;
+}
+
+form.contents > div > div.font-code {
+  justify-content: flex-start;
+  font-family: var(--marimo-text-font);
+}
+
+/* buttons: outlined (e.g. "Show answer"); a form's Check button is always
+   solid ink, whatever state marimo puts it in */
+[data-testid="marimo-plugin-form-submit-button"],
+[data-testid="marimo-plugin-button"] {
+  font-family: var(--marimo-text-font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: auto;
+  padding: 0.4rem 0.9rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  box-shadow: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* button labels are rendered as markdown; don't inherit the body text size */
+[data-testid="marimo-plugin-button"] .markdown,
+[data-testid="marimo-plugin-button"] .markdown p {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+[data-testid="marimo-plugin-form-submit-button"]:hover,
+[data-testid="marimo-plugin-button"]:hover {
+  background: var(--surface);
+  border-color: var(--text-soft);
+}
+
+[data-testid="marimo-plugin-form-submit-button"],
+[data-testid="marimo-plugin-form-submit-button"]:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--page);
+}
+
+[data-testid="marimo-plugin-form-submit-button"]:hover {
+  opacity: 0.85;
+}
+
+/* answer boxes */
+input[data-testid="marimo-plugin-text-input"] {
+  font-family: var(--marimo-text-font);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius);
+  box-shadow: none;
+  padding: 0.35rem 0.6rem;
+}
+
+input[data-testid="marimo-plugin-text-input"]::placeholder {
+  color: var(--text-soft);
+  opacity: 0.7;
+}
+
+input[data-testid="marimo-plugin-text-input"]:focus,
+input[data-testid="marimo-plugin-text-input"]:focus-visible {
+  outline: none;
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px var(--code-bg);
+}

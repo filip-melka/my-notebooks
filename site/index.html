@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notebooks · Filip Melka</title>
+    <meta name="description" content="Interactive notebooks by Filip Melka." />
+    <style>
+      :root {
+        --page: #fafafa;
+        --text: #111111;
+        --text-soft: #666666;
+        --hairline: #e6e6e6;
+        --hairline-strong: #d4d4d4;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 3rem;
+      }
+      header {
+        margin-bottom: 3rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        margin: 0 0 0.25rem;
+      }
+      h2 {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-soft);
+        margin: 0 0 0.5rem;
+      }
+      p {
+        margin: 0;
+      }
+      .soft,
+      footer {
+        color: var(--text-soft);
+      }
+      a {
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        border-top: 1px solid var(--hairline);
+      }
+      li:last-child {
+        border-bottom: 1px solid var(--hairline);
+      }
+      li a {
+        display: block;
+        padding: 1.1rem 0;
+        text-decoration: none;
+      }
+      li a:hover .title {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      li a:focus-visible {
+        outline: 2px solid var(--hairline-strong);
+        outline-offset: 2px;
+      }
+      .title {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .desc {
+        display: block;
+        color: var(--text-soft);
+        font-size: 0.95rem;
+        margin-top: 0.15rem;
+      }
+      footer {
+        margin-top: 3rem;
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>My Notebooks</h1>
+        <p class="soft">
+          Interactive notebooks that run in your browser. The first load can
+          take a few seconds.
+          <a href="https://filipmelka.com">Back to the blog</a>.
+        </p>
+      </header>
+
+      <h2>Neural networks</h2>
+      <ul>
+        <li>
+          <a href="neural-network-training/">
+            <span class="title">Neural Network Training Made Simple</span>
+            <span class="desc"
+              >One full training step by hand on a tiny network with 9 weights.
+              High-school algebra is enough.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="neural-network-training-exercise/">
+            <span class="title">Neural Network Training (Exercise)</span>
+            <span class="desc"
+              >Train a small network by hand for one step, with instant feedback
+              on every answer.</span
+            >
+          </a>
+        </li>
+      </ul>
+
+      <footer>© Filip Melka 2026</footer>
+    </main>
+  </body>
+</html>
