@@ -11,7 +11,7 @@
 import marimo
 
 __generated_with = "0.25.2"
-app = marimo.App(width="medium", app_title="Neural Network Training Made Simple")
+app = marimo.App(width="medium", html_head_file="head.html", app_title="Neural Network Training Made Simple")
 
 
 @app.cell(hide_code=True)

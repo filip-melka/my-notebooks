@@ -32,7 +32,12 @@ jobs:
           # (e.g. YOLO: PyTorch, webcam) lives in drafts/ and is not published.
           for f in notebooks/*.py; do
             name=$(basename "$f" .py)
-            uvx marimo@0.25.2 export html-wasm "$f" -o "_site/$name" --mode run
+            # Run from notebooks/ so marimo finds head.html next to the notebook.
+            (cd notebooks && uvx marimo@0.25.2 export html-wasm "$name.py" \
+              -o "$GITHUB_WORKSPACE/_site/$name" --mode run)
+            # Replace marimo's default icons with ours (same file names).
+            cp site/favicon.svg site/favicon.ico site/apple-touch-icon.png \
+               "_site/$name/"
           done
 
       - uses: actions/upload-pages-artifact@v3
