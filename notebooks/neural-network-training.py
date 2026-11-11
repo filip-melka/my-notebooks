@@ -1,3 +1,13 @@
+# /// script
+# dependencies = [
+#     "marimo",
+#     "numpy",
+#     "anywidget",
+#     "traitlets",
+#     "wigglystuff",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.25.2"
