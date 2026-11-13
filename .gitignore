@@ -25,3 +25,6 @@ __marimo__/
 
 # Built site (scripts/build-site.sh)
 _site/
+
+# git worktrees
+.claude/worktrees/
